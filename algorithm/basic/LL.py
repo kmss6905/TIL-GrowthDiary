@@ -9,7 +9,7 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    # O(1)
+    # 추가 O(1)
     def append(self, value):
         new_node = Node(value)
         if self.head is None:
@@ -18,14 +18,14 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
 
-    # O(N)
+    # 접근 O(N)
     def get(self, idx):
         current = self.head
         for _ in range(idx):
             current = current.next
         return current.value
 
-    # 문제는 첫번 째 노드 삭제시 에러 발생 -> 예외처리 필요
+    # 삭제 O(1)
     def remove(self, idx):
         current = self.head
         before = None
@@ -37,7 +37,7 @@ class LinkedList:
                 current = current.next
             before.next = current.next
 
-    # O(1)
+    # 교체 O(1)
     def replace(self, idx, value):
         new_node = Node(value)
         current = self.head
@@ -64,6 +64,14 @@ class LinkedList:
                 before = current
         new_node.next = current
         before.next = new_node
+
+    def length(self):
+        cnt = 0
+        current = self.head
+        while current:
+            cnt += 1
+            current = current.next
+        return cnt
 
     # O(N)
     def print_all_element(self):
@@ -97,3 +105,4 @@ ll.print_all_element()
 
 ll.remove(0)
 ll.print_all_element()
+print(ll.length())

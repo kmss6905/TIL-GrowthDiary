@@ -29,10 +29,13 @@ class LinkedList:
     def remove(self, idx):
         current = self.head
         before = None
-        for _ in range(idx):
-            before = current
-            current = current.next
-        before.next = current.next
+        if idx == 0:
+            self.head = current.next
+        else:
+            for _ in range(idx):
+                before = current
+                current = current.next
+            before.next = current.next
 
     # O(1)
     def replace(self, idx, value):
@@ -90,4 +93,7 @@ ll.print_all_element()
 
 ll.remove(1)
 
+ll.print_all_element()
+
+ll.remove(0)
 ll.print_all_element()

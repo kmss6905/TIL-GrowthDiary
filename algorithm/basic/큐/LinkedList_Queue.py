@@ -14,3 +14,4 @@ queue.popleft()
 # 원래 큐눈 뒤에 enqueue 앞에서 dequeue
 # deque 는 front 에서 enqueue, rear 에서도 dequeue 할 수 있는 자료구조이다
 # doubly ended queue = deque
+# 코테에서 단독으로 사용 x, 주로 bfs 에서 자주 사용

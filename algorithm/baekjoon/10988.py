@@ -1,3 +1,5 @@
+# 투포인터와 비슷하다.
+# leetcode - sum 문제 아이디어
 def sol(s):
     i = 0
     j = len(s) - 1

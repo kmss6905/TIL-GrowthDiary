@@ -11,8 +11,8 @@ def sol():
     current = sum(dd[:b])
     ll = [current]
 
-    # O(N)
-    for i in range(0, len(dd)-b):
+    # O(N) - Prefix Sum
+    for i in range(0, len(dd)-b):  # 0 ~ len(dd)-b-1 index 까지
         current = current - dd[i] + dd[i+b]
         ll.append(current)
     return max(ll)

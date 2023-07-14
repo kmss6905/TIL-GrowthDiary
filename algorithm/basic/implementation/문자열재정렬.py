@@ -10,5 +10,7 @@ for i in a:
 
 # O(NlogN)
 alpha.sort() 
-alpha.append(str(digitsum))
+
+if digitsum != 0:
+    alpha.append(str(digitsum))
 print(''.join(alpha))

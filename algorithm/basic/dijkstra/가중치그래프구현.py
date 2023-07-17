@@ -1,4 +1,4 @@
-# 일반적인 그래프의 경우
+# 기본 다익스트라 구현
 def dijkstra(graph, start, final, n):
     costs = {}
     pq = []

@@ -37,6 +37,27 @@ heapify () 의 경우 O(N) 걸림
 
 
 ### 정리
+우선 순위 큐를 구현하기 위해서 heap 자료구조를 사용하여 구현하는 것이 효율적이다.
+
 * heapify() -> O(N)
 * heappush() -> O(logN)
 * heappop() -> O(logN)
+
+
+max heap
+```python3
+# 구현 1
+max_heap = [5,3,9,4,1,2,6]
+max_heap = [i * -1 for i in max_heap]
+heapq.heapify(max_heap) # min heap 만 가능 따라서 모든 원소에 -1을 곱하여 사용한다.
+weight = heapq.heappop(max_heap)
+value = -1 * weight # 원래 값으로 구함
+
+
+# 구현 2
+max_heap = [5,3,9,4,1,2,6]
+max_heap = [(i * -1, i) for i in max_heap]
+heapq.heapify(max_heap) # 튜플 앞에 있는 값을 기준으로 비교를 함
+weight, value = heapq.heappop(max_heap)
+
+```

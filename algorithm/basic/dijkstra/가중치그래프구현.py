@@ -9,7 +9,7 @@ def dijkstra(graph, start, final, n):
             costs[cur_v] = cur_cost
             for cost, next_v in graph[cur_v]:
                 next_cost = cur_cost + cost
-                heapq.heappush(pq, (next_cost, next_v))
+                heapq.heappush(pq, (next_cost, next_v)) # 알아서 정렬 해줌, 우선순위가 높은 것이 맨 앞으로
     return costs[final]
 graph = { ... }
 dijkstra(graph, 1, 8)

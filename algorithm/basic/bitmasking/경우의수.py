@@ -1,9 +1,8 @@
-n = 4
 a = ["사과", "딸기", "포도", "배"]
 
-for i in range(1 << n): # 16
+for i in range(1 << range(a)): # 16, 0 ~ 15
     ret = ""
-    for j in range(n): # 4
-        if i & (1 << j):
+    for j in range(a): # 0000, 0010, 0100, 1000 으로 원소의 수만큼 반복한다.
+        if i & (1 << j): # j 번째에 비트가 켜져있는 지 검사, 켜져있는 곳의 원소를 출력
             ret += (a[j] + " ")
     print(ret)

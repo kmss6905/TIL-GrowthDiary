@@ -1,6 +1,6 @@
 from json.tool import main
 
-
+# 재풀이 필요 -> notion 기록
 n = int(input())
 cnt = 0
 number = 0

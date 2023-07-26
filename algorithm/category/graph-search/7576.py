@@ -2,7 +2,6 @@ from collections import deque
 import queue
 m, n = map(int, input().split())
 graph = [list(map(int,input().split())) for _ in range(n)]
-visited = [[0]*m for _ in range(n)]
 dy, dx = [-1, 1, 0, 0], [0, 0, -1, 1]
 q = deque()
 for i in range(n):

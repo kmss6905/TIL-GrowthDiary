@@ -1,7 +1,8 @@
 from collections import deque
 
+# 재풀이 필요
 r, c, n = map(int, input().split())
-graph = [list(input()) for i in range(r)]
+graph = [list(input()) for _ in range(r)]
 visited = [['O'] * c for _ in range(r)]
 directions = [
     (-1, 0), (1, 0), (0, 1), (0, -1)

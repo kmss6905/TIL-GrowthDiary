@@ -7,7 +7,6 @@ q = deque()
 for i in range(n):
     for j in range(m):
         if graph[i][j] == 1:
-            visited[i][j] = 1
             q.append((i, j, 0))
 
 def bfs():

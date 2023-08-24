@@ -1,4 +1,4 @@
-package com.example.loginsession.exception;
+package com.example.login.exception;
 
 public class PasswordNotMatchedException extends RuntimeException{
 

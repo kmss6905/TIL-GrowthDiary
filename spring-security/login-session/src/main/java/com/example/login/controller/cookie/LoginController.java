@@ -1,9 +1,11 @@
-package com.example.loginsession;
+package com.example.login.controller.cookie;
 
+import com.example.login.controller.request.LoginRequestDto;
+import com.example.login.user.User;
+import com.example.login.user.UserStore;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.Getter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,7 @@ import java.util.Optional;
 public class LoginController {
 
   @PostMapping("/login")
-  public String login(
+  public String loginCookie(
           @RequestBody LoginRequestDto loginDto,
           HttpServletResponse response) {
     // login logic
@@ -61,5 +63,3 @@ public class LoginController {
   }
 }
 
-record LoginRequestDto(@Getter String id, @Getter String password) {
-}

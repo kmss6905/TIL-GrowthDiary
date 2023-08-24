@@ -1,6 +1,6 @@
-package com.example.loginsession;
+package com.example.login.user;
 
-import com.example.loginsession.exception.PasswordNotMatchedException;
+import com.example.login.exception.PasswordNotMatchedException;
 import lombok.Builder;
 import lombok.Getter;
 

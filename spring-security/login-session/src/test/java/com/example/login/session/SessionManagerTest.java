@@ -75,8 +75,7 @@ class SessionManagerTest {
     request.setCookies(response.getCookies());
 
     // when
-    String mySessionId = response.getCookie("mySessionId").getValue();
-    sessionManager.expireSession(mySessionId);
+    sessionManager.expireSession(request, response);
 
     // then
     assertThat(sessionManager.getSession(request)).isNull();

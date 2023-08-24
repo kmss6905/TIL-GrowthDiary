@@ -1,6 +1,7 @@
 package com.example.login.session;
 
 import com.example.login.controller.session.SessionUser;
+import com.example.login.exception.BadRequestException;
 import com.example.login.user.User;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,8 +37,24 @@ public class SessionManager {
     return this.sessions.get(findCookie.getValue());
   }
 
-  public void expireSession(String sessionId) {
-    sessions.remove(sessionId);
+  public void expireSession(HttpServletRequest request, HttpServletResponse response) {
+    Cookie cookie = findCookie(request, "mySessionId");
+    if (cookie == null) {
+      throw new BadRequestException("can't logout");
+    }
+
+    // 세션 삭제
+    sessions.remove(cookie.getValue());
+
+    // 쿠키 삭제
+    Cookie expireCookie = createExpireCookie();
+    response.addCookie(expireCookie);
+  }
+
+  private static Cookie createExpireCookie() {
+    Cookie removedCookie = new Cookie("mySessionId", null);
+    removedCookie.setMaxAge(0);
+    return removedCookie;
   }
 
   private Cookie findCookie(HttpServletRequest request, String cookieName) {

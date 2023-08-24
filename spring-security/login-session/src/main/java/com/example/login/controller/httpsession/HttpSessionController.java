@@ -28,6 +28,9 @@ public class HttpSessionController {
   @GetMapping("/home")
   public ResponseEntity<?> home(
           @SessionAttribute(value = SessionConst.SESSION_MEMBER) SessionUser sessionUser) {
+    if (sessionUser == null) {
+      ResponseEntity.badRequest().body("can't allowed");
+    }
     return ResponseEntity.ok().body("Hello " + sessionUser.id());
   }
 

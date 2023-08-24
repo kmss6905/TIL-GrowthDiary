@@ -1,8 +1,13 @@
 package com.example.login.session;
 
+import com.example.login.controller.session.SessionUser;
 import com.example.login.user.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,22 +20,35 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionManager {
 
   // 메모리, 혹은 외부 DB에 세션을 저장 할 수 있다.
-  private static final ConcurrentHashMap<String, User> sessions = new ConcurrentHashMap<>();
+  final ConcurrentHashMap<String, SessionUser> sessions = new ConcurrentHashMap<>();
+  public static final String SESSION_ID = "mySessionId";
 
-  public String createSession(User user) {
+  public void createSession(User user, HttpServletResponse response) {
     String sessionId = UUID.randomUUID().toString();
-    sessions.put(sessionId, user);
-    return sessionId;
+    sessions.put(sessionId, new SessionUser(user.getId()));
+    response.addCookie(new Cookie(SESSION_ID, sessionId));
   }
-
-  public User getSession(String sessionId) {
-    if (sessions.get(sessionId) == null) {
-      throw new IllegalArgumentException("no session, go to login page");
+  public SessionUser getSession(HttpServletRequest request) {
+    Cookie findCookie = findCookie(request, SESSION_ID);
+    if (findCookie == null) {
+      return null;
     }
-    return sessions.get(sessionId);
+    return this.sessions.get(findCookie.getValue());
   }
 
   public void expireSession(String sessionId) {
     sessions.remove(sessionId);
+  }
+
+  private Cookie findCookie(HttpServletRequest request, String cookieName) {
+    Cookie[] cookies = request.getCookies();
+    if (cookies == null) {
+      return null;
+    }
+    return Arrays.stream(cookies)
+            .filter(it -> it.getName().equals(cookieName))
+            .findFirst()
+            .orElse(null);
+
   }
 }

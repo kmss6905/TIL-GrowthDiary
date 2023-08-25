@@ -22,7 +22,7 @@ public class LoginCheckerFilter implements Filter {
     String requestURI = httpRequest.getRequestURI();
     if (isLoginCheckPath(requestURI)) {
       try {
-        log.info("인증 체크 로직 실행 {}", requestURI);
+        log.info("인증 체크 필터 시작 {}", requestURI);
 
         // 세션이 없거나, 있더라도 찾고자 하는 값이 없는 경우
         HttpSession session = httpRequest.getSession(false);
@@ -36,7 +36,7 @@ public class LoginCheckerFilter implements Filter {
       } catch (Exception e) {
         throw e; // 톰켓까지 예외를 보내주어야 한다.
       } finally {
-
+        log.info("인증 체크 필터 종료 {}", requestURI);
       }
     }
     chain.doFilter(request, response);

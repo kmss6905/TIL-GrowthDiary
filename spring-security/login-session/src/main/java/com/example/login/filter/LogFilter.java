@@ -16,11 +16,10 @@ public class LogFilter implements Filter {
     try {
       log.info("REQUEST start = [{}][{}]", uuid, httpRequest.getRequestURI());
       chain.doFilter(request, response);
-      log.info("REQUEST end = [{}][{}]", uuid, httpRequest.getRequestURI());
     } catch (Exception e) {
       throw e;
     }finally {
-
+      log.info("RESPONSE end = [{}][{}]", uuid, httpRequest.getRequestURI());
     }
   }
 }

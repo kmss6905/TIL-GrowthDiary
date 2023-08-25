@@ -29,7 +29,7 @@ public class LoginCheckerFilter implements Filter {
         if (session == null || session.getAttribute(SessionConst.SESSION_MEMBER) == null) {
             log.info("미인증 사용자 요청 {}", requestURI);
             // 로그인으로 redirect
-            httpResponse.sendRedirect("/login?redirectURL=" + requestURI);
+            httpResponse.sendRedirect("/login"); // REST API 의 경우에는 다르게 적용
             return;
         }
         chain.doFilter(request, response);

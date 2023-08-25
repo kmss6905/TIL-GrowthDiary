@@ -6,9 +6,13 @@ import com.example.login.user.User;
 import com.example.login.user.UserStore;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
+@Slf4j
 @RestController
 @RequestMapping("/http-session")
 public class HttpSessionController {
@@ -43,5 +47,26 @@ public class HttpSessionController {
     SessionUser sessionUser = (SessionUser) session.getAttribute(SessionConst.SESSION_MEMBER);
     session.invalidate();
     return ResponseEntity.ok("success logout " + sessionUser.getId());
+  }
+
+  @GetMapping("/session-info")
+  public ResponseEntity<String> sessionInfo(HttpServletRequest request) {
+    HttpSession session = request.getSession(false);
+    if (session == null) {
+      return ResponseEntity.ok("세션이 없습니다.");
+    }
+
+
+    // 세션 데이터 출력
+    session.getAttributeNames().asIterator()
+            .forEachRemaining(name -> log.info("session name={}, value={}", name, session.getAttribute(name)));
+
+    log.info("sessionId={}", session.getId());
+    log.info("getMaxInactiveInterval={}", session.getMaxInactiveInterval());
+    log.info("creationTime={}", new Date(session.getCreationTime()));
+    log.info("lastAccessedTime={}", new Date(session.getLastAccessedTime()));
+    log.info("isNew={}", session.isNew());
+
+    return ResponseEntity.ok("");
   }
 }

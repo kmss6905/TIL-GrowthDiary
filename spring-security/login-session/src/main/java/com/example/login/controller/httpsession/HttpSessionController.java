@@ -26,6 +26,7 @@ public class HttpSessionController {
     // session 생성
     HttpSession session = request.getSession(true);
     session.setAttribute(SessionConst.SESSION_MEMBER, new SessionUser(user.getId()));
+    System.out.println("dfsfs");
     return ResponseEntity.ok("login success");
   }
 
@@ -67,6 +68,6 @@ public class HttpSessionController {
     log.info("lastAccessedTime={}", new Date(session.getLastAccessedTime()));
     log.info("isNew={}", session.isNew());
 
-    return ResponseEntity.ok("");
+    return ResponseEntity.ok("hello session info");
   }
 }

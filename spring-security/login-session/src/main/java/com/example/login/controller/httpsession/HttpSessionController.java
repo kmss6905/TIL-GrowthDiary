@@ -26,7 +26,6 @@ public class HttpSessionController {
     // session 생성
     HttpSession session = request.getSession(true);
     session.setAttribute(SessionConst.SESSION_MEMBER, new SessionUser(user.getId()));
-    System.out.println("dfsfs");
     return ResponseEntity.ok("login success");
   }
 

@@ -33,6 +33,7 @@ public class LoginCheckerFilter implements Filter {
             return;
         }
         chain.doFilter(request, response);
+        return;
       } catch (Exception e) {
         throw e; // 톰켓까지 예외를 보내주어야 한다.
       } finally {

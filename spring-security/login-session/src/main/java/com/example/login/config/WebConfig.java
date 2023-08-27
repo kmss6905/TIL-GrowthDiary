@@ -1,5 +1,6 @@
 package com.example.login.config;
 
+import com.example.login.argument.LoginArgumentResolver;
 import com.example.login.filter.LogFilter;
 import com.example.login.filter.LoginCheckerFilter;
 import com.example.login.interceptor.LogInterceptor;
@@ -8,13 +9,21 @@ import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-//  @Bean
+  @Override
+  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+    resolvers.add(new LoginArgumentResolver());
+  }
+
+  //  @Bean
   public FilterRegistrationBean logFilter() {
     FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
     filterRegistrationBean.setFilter(new LogFilter());
@@ -23,7 +32,7 @@ public class WebConfig implements WebMvcConfigurer {
     return filterRegistrationBean;
   }
 
-  @Bean
+//  @Bean
   public FilterRegistrationBean loginCheckerFilter() {
     FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
     filterRegistrationBean.setFilter(new LoginCheckerFilter());
@@ -42,6 +51,6 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addInterceptor(new LoginCheckerInterceptor())
             .order(2)
             .addPathPatterns("/**")
-            .excludePathPatterns("/login");
+            .excludePathPatterns("/http-session/login");
   }
 }

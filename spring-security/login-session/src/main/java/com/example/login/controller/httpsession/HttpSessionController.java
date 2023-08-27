@@ -1,7 +1,9 @@
 package com.example.login.controller.httpsession;
 
+import com.example.login.annotation.Login;
 import com.example.login.controller.request.LoginRequestDto;
 import com.example.login.controller.session.SessionUser;
+import com.example.login.controller.session.LoginUser;
 import com.example.login.user.User;
 import com.example.login.user.UserStore;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +38,11 @@ public class HttpSessionController {
       ResponseEntity.badRequest().body("can't allowed");
     }
     return ResponseEntity.ok().body("Hello " + sessionUser.id());
+  }
+
+  @GetMapping("/my-info")
+  public ResponseEntity<?> myInfo(@Login LoginUser loginUser) {
+    return ResponseEntity.ok(loginUser.getId() + " 입니다~");
   }
 
   @PostMapping("/logout")

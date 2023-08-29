@@ -1,13 +1,13 @@
 package com.example.security.login;
 
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   @GetMapping("/")
-  public String login(HttpSession session) {
+  public String home(HttpSession session) {
 
     // SecurityContextHolder
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

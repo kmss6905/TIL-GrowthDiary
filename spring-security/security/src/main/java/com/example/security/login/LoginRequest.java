@@ -1,5 +1,5 @@
 package com.example.security.login;
 
 
-public record LoginRequest(String id, String password) {
+public record LoginRequest(String username, String password) {
 }

@@ -16,7 +16,8 @@ public class Member {
   private String password;
 
   @Builder
-  public Member(String userId, String password) {
+  public Member(long id,String userId, String password) {
+    this.id = id;
     this.userId = userId;
     this.password = password;
   }

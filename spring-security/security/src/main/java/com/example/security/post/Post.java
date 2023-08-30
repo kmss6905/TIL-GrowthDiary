@@ -3,10 +3,11 @@ package com.example.security.post;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.NONE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
 
   @Id
@@ -18,4 +19,11 @@ public class Post {
 
   @Column(nullable = false)
   private long memberId;
+
+  @Builder
+  public Post(String title, String content, long memberId) {
+    this.title = title;
+    this.content = content;
+    this.memberId = memberId;
+  }
 }

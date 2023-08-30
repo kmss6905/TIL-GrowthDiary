@@ -95,7 +95,7 @@ public class SecurityConfig {
     return username -> {
       Member member = memberRepository.findMemberByUserId(username)
               .orElseThrow(() -> new UsernameNotFoundException("not found user : " + username));
-      return new User(member.getUserId(), member.getPassword(), AuthorityUtils.NO_AUTHORITIES);
+      return new User(String.valueOf(member.getUserId()), member.getPassword(), AuthorityUtils.NO_AUTHORITIES);
     };
   }
 }

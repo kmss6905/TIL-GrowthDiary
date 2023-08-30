@@ -1,10 +1,9 @@
 package com.example.security.post;
 
 import com.example.security.application.PostService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.security.login.AuthenticatedMember;
+import com.example.security.login.LoginUser;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/books")
@@ -16,8 +15,11 @@ public class PostController {
   }
 
   @DeleteMapping("/{id}")
-  public String deleteBook(@PathVariable String id) {
-    postService.deleteBook(id);
+  public String deleteBook(
+          @LoginUser AuthenticatedMember authenticatedMember,
+          @PathVariable(name = "id") long bookId
+  ) {
+    postService.deleteBook(authenticatedMember, bookId);
     return "ok";
   }
 }

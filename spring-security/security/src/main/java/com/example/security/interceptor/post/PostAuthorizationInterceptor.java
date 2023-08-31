@@ -29,15 +29,15 @@ public class PostAuthorizationInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     if (handler instanceof HandlerMethod handlerMethod) {
-      AuthorAccessOnly annotation = handlerMethod.getMethodAnnotation(AuthorAccessOnly.class);
+      OwnerOnly annotation = handlerMethod.getMethodAnnotation(OwnerOnly.class);
       if (annotation != null) {
         Long postId = getPathVariablePostId(request);
         Long memberId = getUserIdFromAuthentication(request);
         Post post = findPost(postId);
-        post.checkIsAuthor(memberId);
+        post.checkOwner(memberId);
       }
     }
-    return true;
+    return false;
   }
 
   private Post findPost(Long postId) {

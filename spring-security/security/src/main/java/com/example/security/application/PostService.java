@@ -18,7 +18,7 @@ public class PostService {
 
   public void deletePost(AuthenticatedMember authenticatedMember, long id) {
     Post post = findPost(id);
-    post.checkIsAuthor(authenticatedMember.id());
+    post.checkOwner(authenticatedMember.id());
     postRepository.delete(post);
   }
 

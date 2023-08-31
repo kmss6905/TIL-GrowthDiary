@@ -32,7 +32,7 @@ public class Post {
   }
 
   // check authorization
-  public void checkIsAuthor(long memberId) {
+  public void checkOwner(long memberId) {
     if (this.memberId != memberId) {
       throw new UnauthorizedAccessException("User is not authorized to access this post.");
     }

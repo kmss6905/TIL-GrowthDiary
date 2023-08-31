@@ -3,7 +3,7 @@ package com.example.security.presentation;
 import com.example.security.application.PostService;
 import com.example.security.domain.login.AuthenticatedMember;
 import com.example.security.domain.login.LoginUser;
-import com.example.security.interceptor.post.AuthorAccessOnly;
+import com.example.security.interceptor.post.OwnerOnly;
 import com.example.security.presentation.post.PostEditRequestDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,25 +16,22 @@ public class PostController {
   }
 
   @DeleteMapping("/api/v1/posts/{id}")
-  public String deleteBook(
-          @LoginUser AuthenticatedMember authenticatedMember,
-          @PathVariable long id
-  ) {
+  public String deleteBook(@LoginUser AuthenticatedMember authenticatedMember, @PathVariable long id) {
     postService.deletePost(authenticatedMember, id);
     return "ok";
   }
 
   @DeleteMapping("/api/v2/posts/{id}")
-  @AuthorAccessOnly
+  @OwnerOnly
   public String deletePostVersion2(@PathVariable long id) {
     postService.deletePost(id);
     return "deleted ok";
   }
 
   @PatchMapping("/api/v2/posts/{id}")
-  @AuthorAccessOnly
+  @OwnerOnly
   public String editPost(@PathVariable long id, @RequestBody PostEditRequestDto postEditRequestDto) {
     postService.editPost(id, postEditRequestDto);
-    return "";
+    return "edit post ok";
   }
 }

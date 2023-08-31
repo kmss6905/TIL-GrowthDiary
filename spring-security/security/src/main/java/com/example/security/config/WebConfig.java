@@ -27,6 +27,6 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(new PostAuthorizationInterceptor(postRepository))
-            .addPathPatterns("/api/posts/*");
+            .addPathPatterns("/api/v2/posts/*");
   }
 }

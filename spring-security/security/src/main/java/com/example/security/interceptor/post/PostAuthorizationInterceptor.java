@@ -1,14 +1,11 @@
-package com.example.security.interceptor;
+package com.example.security.interceptor.post;
 
-import com.example.security.post.Post;
-import com.example.security.post.PostRepository;
+import com.example.security.domain.post.Post;
+import com.example.security.domain.post.PostRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.method.HandlerMethod;
@@ -34,23 +31,23 @@ public class PostAuthorizationInterceptor implements HandlerInterceptor {
     if (handler instanceof HandlerMethod handlerMethod) {
       AuthorAccessOnly annotation = handlerMethod.getMethodAnnotation(AuthorAccessOnly.class);
       if (annotation != null) {
-        Long bookId = getPathVariableBookId(request);
+        Long postId = getPathVariablePostId(request);
         Long memberId = getUserIdFromAuthentication(request);
-        Post post = findBook(bookId);
+        Post post = findPost(postId);
         post.checkIsAuthor(memberId);
       }
     }
     return true;
   }
 
-  private Post findBook(Long bookId) {
-    return postRepository.findById(bookId)
-            .orElseThrow(() -> new RuntimeException("not found book"));
+  private Post findPost(Long postId) {
+    return postRepository.findById(postId)
+            .orElseThrow(() -> new RuntimeException("not found post"));
   }
 
-  private Long getPathVariableBookId(HttpServletRequest request) {
+  private Long getPathVariablePostId(HttpServletRequest request) {
     Map<?, ?> pathVariables = (Map<?, ?>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-    return Long.valueOf((String) pathVariables.get("bookId"));
+    return Long.valueOf((String) pathVariables.get("id"));
   }
 
   private Long getUserIdFromAuthentication(HttpServletRequest request) {

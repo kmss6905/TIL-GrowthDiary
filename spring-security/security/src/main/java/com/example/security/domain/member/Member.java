@@ -1,4 +1,4 @@
-package com.example.security.member;
+package com.example.security.domain.member;
 
 import jakarta.persistence.*;
 import lombok.*;

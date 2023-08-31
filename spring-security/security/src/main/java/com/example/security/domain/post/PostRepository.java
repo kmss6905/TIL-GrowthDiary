@@ -1,4 +1,4 @@
-package com.example.security.post;
+package com.example.security.domain.post;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,5 +9,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
   @Modifying
   @Query("delete from Post where id = :bookId")
-  int deleteById(@Param("bookId") long bookId);
+  void deleteById(@Param("bookId") long bookId);
 }

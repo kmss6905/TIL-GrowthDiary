@@ -1,7 +1,7 @@
 package com.example.security.argument;
 
-import com.example.security.login.AuthenticatedMember;
-import com.example.security.login.LoginUser;
+import com.example.security.domain.login.AuthenticatedMember;
+import com.example.security.domain.login.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.Authentication;

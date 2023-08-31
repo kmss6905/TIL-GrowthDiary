@@ -1,8 +1,7 @@
 package com.example.security;
 
-import com.example.security.member.Member;
-import com.example.security.member.MemberRepository;
-import org.assertj.core.api.Assertions;
+import com.example.security.domain.member.Member;
+import com.example.security.domain.member.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

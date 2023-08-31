@@ -1,4 +1,4 @@
-package com.example.security.interceptor;
+package com.example.security.interceptor.post;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

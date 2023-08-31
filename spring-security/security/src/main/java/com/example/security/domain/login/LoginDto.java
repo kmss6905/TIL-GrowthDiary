@@ -1,4 +1,4 @@
-package com.example.security.login;
+package com.example.security.domain.login;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.example.security.login;
+package com.example.security.domain.login;
 
 public record AuthenticatedMember(long id) {
 }

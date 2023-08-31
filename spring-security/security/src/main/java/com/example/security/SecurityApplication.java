@@ -1,10 +1,9 @@
 package com.example.security;
 
-import com.example.security.member.Member;
-import com.example.security.member.MemberRepository;
-import com.example.security.post.Post;
-import com.example.security.post.PostController;
-import com.example.security.post.PostRepository;
+import com.example.security.domain.member.Member;
+import com.example.security.domain.member.MemberRepository;
+import com.example.security.domain.post.Post;
+import com.example.security.domain.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -14,13 +14,18 @@ public class PostService {
     this.postRepository = postRepository;
   }
 
-  public void deleteBook(AuthenticatedMember authenticatedMember, long id) {
-    Post post = findBook(id);
+  public void deletePost(AuthenticatedMember authenticatedMember, long id) {
+    Post post = findPost(id);
     post.checkIsAuthor(authenticatedMember.id());
     postRepository.delete(post);
   }
 
-  private Post findBook(long id) {
+  public void deletePost(long bookId) {
+    // 내부적으로 findById 실행 이후 삭제하기 때문에 쿼리가 두번 실행됩니다. 따라서 쿼리를 작성할 필요가 있음
+    postRepository.deleteById(bookId);
+  }
+
+  private Post findPost(long id) {
     return postRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("not fount book id : " + id));
   }

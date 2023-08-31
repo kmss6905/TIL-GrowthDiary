@@ -41,7 +41,6 @@ public class SecurityApplication implements CommandLineRunner {
             .build();
     memberRepository.saveAll(List.of(member, member2));
 
-
     // save post
     postRepository.save(Post.builder()
             .content("User1의Post")

@@ -17,9 +17,9 @@ public class PostController {
   @DeleteMapping("/{id}")
   public String deleteBook(
           @LoginUser AuthenticatedMember authenticatedMember,
-          @PathVariable(name = "id") long bookId
+          @PathVariable long id
   ) {
-    postService.deleteBook(authenticatedMember, bookId);
+    postService.deletePost(authenticatedMember, id);
     return "ok";
   }
 }

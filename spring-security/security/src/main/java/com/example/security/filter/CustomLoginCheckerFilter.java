@@ -38,7 +38,6 @@ public class CustomLoginCheckerFilter extends AbstractAuthenticationProcessingFi
     LoginDto loginDto = objectMapper.readValue(StreamUtils.copyToString(request.getInputStream(), StandardCharsets.UTF_8), LoginDto.class);
     String username = loginDto.getUsername();
     String password = loginDto.getPassword();
-    log.info("username: {}, password: {}", username, password);
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
     return this.getAuthenticationManager().authenticate(authenticationToken);
   }

@@ -1,5 +1,6 @@
 package com.example.concurrency.domain.issue;
 
+import com.example.concurrency.dto.CouponIssueDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,5 +27,12 @@ public class IssuedCoupon {
 
   public IssuedCoupon() {
 
+  }
+
+  public static IssuedCoupon from(CouponIssueDto couponIssueDto) {
+    return IssuedCoupon.builder()
+            .issuer(couponIssueDto.targetOwnerId())
+            .owner(couponIssueDto.fromUserId())
+            .build();
   }
 }

@@ -1,5 +1,6 @@
 package com.example.concurrency;
 
+import com.example.concurrency.application.PessimisticLockStockService;
 import com.example.concurrency.application.StockService;
 import com.example.concurrency.domain.stock.Stock;
 import com.example.concurrency.domain.stock.StockRepository;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StockServiceTest {
 
   @Autowired
-  private StockService stockService;
+  private PessimisticLockStockService stockService;
 
   @Autowired
   private StockRepository stockRepository;

@@ -53,8 +53,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(it ->
                     it.requestMatchers(antMatcher("/login")).permitAll()
                             .anyRequest().authenticated()
-            ).sessionManagement(it -> it.maximumSessions(1)
-                    .maxSessionsPreventsLogin(true));
+            );
 
     http.addFilterBefore(customLoginCheckerFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();

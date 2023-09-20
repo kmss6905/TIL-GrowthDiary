@@ -1,4 +1,4 @@
-package com.example.concurrency.application;
+package com.example.concurrency.application.stock;
 
 import com.example.concurrency.domain.stock.Stock;
 import com.example.concurrency.domain.stock.StockRepository;

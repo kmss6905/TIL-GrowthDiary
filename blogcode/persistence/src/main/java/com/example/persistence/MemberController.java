@@ -13,6 +13,7 @@ public class MemberController {
     this.memberService = memberService;
   }
 
+
   @GetMapping("/members/{id}")
   public MemberDto update(
           @PathVariable Long id,

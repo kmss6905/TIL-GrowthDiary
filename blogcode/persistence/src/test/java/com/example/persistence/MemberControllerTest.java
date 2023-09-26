@@ -34,7 +34,6 @@ class MemberControllerTest {
   }
 
   @Test
-  @Rollback(value = false)
   void shouldReturnNameUpdatedMember() throws Exception {
     mvc.perform(get("/members/{id}?name={name}", 100L, "user2"))
             .andExpect(status().isOk())

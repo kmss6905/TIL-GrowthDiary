@@ -26,12 +26,12 @@ public class HelloJpa {
     // 트랜잭션 시작
     tx.begin();
     try {
-
-      Member member = new Member();
-      member.setId(2L);
-      member.setName("A");
+      Member member = new Member(111L, "A");
+      Member member1 = new Member(211L, "B");
 
       em.persist(member);
+      em.persist(member1);
+      System.out.println("===================");
       tx.commit();
     } catch (Exception e) {
       tx.rollback();

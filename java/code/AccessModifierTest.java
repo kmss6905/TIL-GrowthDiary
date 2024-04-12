@@ -1,0 +1,6 @@
+class AccessModifierTest{
+
+  public AccessModifierTest() {
+
+  }
+}

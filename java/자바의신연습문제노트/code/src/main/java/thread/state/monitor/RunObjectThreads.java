@@ -22,7 +22,8 @@ public class RunObjectThreads {
       System.out.println("thread state(after 0.1 sec)=" + thread.getState());
 
       synchronized (monitor) {
-        monitor.notify();
+        // 모니터를 흭득하고 있는 모든 스레드를 깨운다.
+        monitor.notifyAll();
       }
 
       Thread.sleep(100);

@@ -30,10 +30,14 @@ public class HelloJpa {
       Member member1 = new Member(211L, "B");
 
       em.persist(member);
-      em.persist(member1);
+      em.persist(member1); // 아직 쿼리 나가지 않고, 우선은 영속성 컨텍스트에 저장된 상태이다.
       System.out.println("===================");
-      tx.commit();
+      Member findMember = em.find(Member.class, 111L); // 1차캐시에서 조회한다.
+      System.out.println(findMember);
+      tx.commit(); // 실제 commit 시점에 쿼리가 나간다.
     } catch (Exception e) {
+      System.out.println("error occur");
+      e.printStackTrace();
       tx.rollback();
     }finally {
       em.close();

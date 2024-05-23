@@ -2,6 +2,7 @@
 <persistence version="2.2"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <!-- 애플리케이션에 단 하나만 생성한다. 일반적을 연결할 데이터베이스당 하나의 영속성 유닛을 등록한다. 영속성 유닛은 고유한 이름이 필요-->
     <persistence-unit name="hello">
         <properties>
             <!-- 필수 속성 -->
@@ -14,7 +15,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>

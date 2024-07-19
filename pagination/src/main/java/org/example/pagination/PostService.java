@@ -18,8 +18,8 @@ public class PostService {
 
   public CursorContent<Post> findPage(Long cursorId, Pageable pageable) {
     final Slice<Post> posts = getPosts(cursorId, pageable);
-    if (!posts.hasNext()) {
-      new CursorContent<>(posts.getContent(), null, false, true);
+    if (cursorId == null) {
+      return CursorContent.first(posts);
     }
 
     final Long lastIdOfList = posts.isEmpty() ?

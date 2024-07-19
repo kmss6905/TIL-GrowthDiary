@@ -11,5 +11,5 @@ GET http://localhost:8080/api/posts?size=10&sort=createdDate,desc
 Accept: application/json
 
 ### OFFSET & SLICE (SCROLL)
-GET http://localhost:8080/api/posts/offset?size=10&page=0&sort=createdDate,desc
+GET http://localhost:8080/api/posts/offset?size=10&page=1&sort=createdDate,desc
 Accept: application/json

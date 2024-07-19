@@ -42,6 +42,12 @@ public class PayController {
   private final ObjectMapper objectMapper;
   private final KakaoClient kakaoClient;
 
+  @Value("${payment.kakao.secret}")
+  private String kakaoSecret;
+
+  @Value("${payment.kakao.cid}")
+  private String kakaoCid;
+
   @GetMapping("/success")
   public ResponseEntity<String> successPayment(
       @RequestParam(name = "pg_token") String pgToken,
@@ -88,7 +94,7 @@ public class PayController {
   }
 
   private ResponseEntity<String> requestApprove(String pgToken, Payment payment) {
-    String secretKey = "DEVE27C3A2296C650202992DD7D150AE3B43D9B8";
+    String secretKey = kakaoSecret;
 
     // Create headers
     HttpHeaders headers = new HttpHeaders();
@@ -97,7 +103,7 @@ public class PayController {
 
     // Create request body
     Map<String, Object> requestBody = new HashMap<>();
-    requestBody.put("cid", "TC0ONETIME");
+    requestBody.put("cid", kakaoCid);
     requestBody.put("tid", payment.getTid());
     requestBody.put("pg_token", pgToken);
     requestBody.put("partner_order_id", payment.getOrder().getOrderId());

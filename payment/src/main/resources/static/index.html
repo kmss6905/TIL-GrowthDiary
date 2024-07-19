@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제 요청</title>
+</head>
+<body>
+<button id="paymentButton">결제 요청</button>
+
+<script>
+  function sendPaymentRequest() {
+    fetch('http://localhost:8080/order', {
+      method: 'GET',
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        throw new Error('주문 생성 오류');
+      }
+    })
+    .then(response => {
+      return response.json().then(orderKey => {
+        return {"orderKey": orderKey, "correlationId": response.headers.get("X-Correlation-Id")};
+      });
+    })
+    .then(data => {
+      redirectToPayment(data.orderKey, data.correlationId); // data와 correlationId를 인자로 넘깁니다.
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  function redirectToPayment(uuid, correlationId) {
+    console.log(`uuid = ${uuid}, correlationId = ${correlationId}`)
+    fetch(`http://localhost:8080/ready?order_key=${uuid}`, {
+      method: 'GET',
+      headers: {
+        "X-Correlation-Id": correlationId
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Network response was not ok.');
+      }
+    })
+    .then(data => {
+      console.log('Success:', data);
+      window.location.href = data.next_redirect_pc_url;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  document.getElementById('paymentButton').addEventListener('click', sendPaymentRequest);
+</script>
+</body>
+</html>

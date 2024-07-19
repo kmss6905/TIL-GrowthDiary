@@ -193,43 +193,6 @@ public class PayController {
     }
   }
 
-  private ResponseEntity<String> requestCancelPayment(Payment payment) {
-    String secretKey = "DEVE27C3A2296C650202992DD7D150AE3B43D9B8";
-
-
-    // Headers
-    HttpHeaders headers = new HttpHeaders();
-    headers.set("Authorization", "SECRET_KEY " + secretKey);
-    headers.setContentType(MediaType.APPLICATION_JSON);
-
-    // Request body
-    Map<String, Object> requestBody = new HashMap<>();
-    requestBody.put("cid", "TC0ONETIME");
-    requestBody.put("tid", payment.getTid());
-    requestBody.put("cancel_amount", payment.getOrder().getPrice());
-    requestBody.put("cancel_tax_free_amount", 0);
-    requestBody.put("cancel_vat_amount", 200);
-    requestBody.put("cancel_available_amount", 0);
-
-    // Create entity
-    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
-
-    // Create RestTemplate
-    RestTemplate restTemplate = new RestTemplate();
-
-    // Set URL
-    String url = "https://open-api.kakaopay.com/online/v1/payment/cancel";
-
-    // Send request
-    ResponseEntity<String> response = restTemplate.exchange(
-        url,
-        HttpMethod.POST,
-        entity,
-        String.class
-    );
-    return response;
-  }
-
   private Order findOrder(UUID orderKey) {
     return orderRepository.findById(orderKey)
         .orElseThrow(() -> new RuntimeException("not found order key"));

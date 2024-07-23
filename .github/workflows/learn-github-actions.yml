@@ -21,19 +21,7 @@ jobs:
       - name: Test With Gradlew
         run: ./gradlew test
 
-  docker-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./devops/github
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ env.DOCKER_IMAGE }} .
-
-  docker-push:
+  docker-build-and-push:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -76,6 +64,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          run: |
+          script: |
             aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ ECR_REGISTRY }}
             docker compose pull && docker compose up -d

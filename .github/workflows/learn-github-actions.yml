@@ -59,3 +59,17 @@ jobs:
           docker buildx build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY"
+  deploy:
+    needs: docker-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Dev
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TARGET_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }}
+            docker compose pull && docker compose up -d

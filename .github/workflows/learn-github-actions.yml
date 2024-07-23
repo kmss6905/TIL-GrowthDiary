@@ -52,7 +52,7 @@ jobs:
           echo "::set-output name=ecr_registry::$ECR_REGISTRY"
 
   deploy:
-    needs: docker-push
+    needs: docker-build-and-push
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Dev

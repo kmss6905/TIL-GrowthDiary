@@ -58,12 +58,12 @@ jobs:
       - name: Deploy to Dev
         uses: appleboy/ssh-action@master
         env:
-          ECR_REGISTRY: ${{ needs.docker-push.outputs.ecr_registry }}
+          ECR_REGISTRY: ${{ needs.docker-build-and-push.outputs.ecr_registry }}
         with:
           host: ${{ secrets.TARGET_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ ECR_REGISTRY }}
+            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ needs.docker-build-and-push.outputs.ecr_registry }}
             docker compose pull && docker compose up -d

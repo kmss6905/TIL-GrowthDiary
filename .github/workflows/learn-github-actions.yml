@@ -5,7 +5,7 @@ env:
   DOCKER_IMAGE: hellodocker
   ECR_REPOSITORY: 276943215323.dkr.ecr.ap-northeast-2.amazonaws.com
 jobs:
-  test:
+  code-test:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,10 +16,11 @@ jobs:
       - name: Set Up JDK 17
         uses: actions/setup-java@v4
         with:
-            distribution: 'zulu'
-            java-version: '17'
+          distribution: 'zulu'
+          java-version: '17'
       - name: Test With Gradlew
         run: ./gradlew test
+
   docker-build:
     runs-on: ubuntu-latest
     defaults:
@@ -31,6 +32,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ env.DOCKER_IMAGE }} .
+
   docker-push:
     runs-on: ubuntu-latest
     defaults:
@@ -59,17 +61,21 @@ jobs:
           docker buildx build --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY"
+          echo "::set-output name=ecr_registry::$ECR_REGISTRY"
+
   deploy:
     needs: docker-push
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Dev
         uses: appleboy/ssh-action@master
+        env:
+          ECR_REGISTRY: ${{ needs.docker-push.outputs.ecr_registry }}
         with:
           host: ${{ secrets.TARGET_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.ECR_REPOSITORY }}
+            aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ ECR_REGISTRY }}
             docker compose pull && docker compose up -d

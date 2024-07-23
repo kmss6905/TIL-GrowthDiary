@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import test.payment.Order;
 import test.payment.client.interceptor.TracePropagationClientHttpRequestInterceptor;
+import test.payment.kakao.Payment;
 
 @Component
 public class KakaoClient {
@@ -53,6 +54,21 @@ public class KakaoClient {
     body.put("cancel_url", "http://localhost:8080/cancel?order_key=" + order.getOrderId() + "&correlation_id=" + MDC.get("X-Correlation-Id"));
     return restClient.post()
         .uri( "/ready")
+        .contentType(APPLICATION_JSON)
+        .body(body)
+        .retrieve()
+        .toEntity(String.class);
+  }
+
+  public ResponseEntity<String> approve(Payment payment, String pgToken) {
+    Map<String, Object> body = new HashMap<>();
+    body.put("cid", cid);
+    body.put("tid", payment.getTid());
+    body.put("pg_token", pgToken);
+    body.put("partner_order_id", payment.getOrder().getOrderId());
+    body.put("partner_user_id", "hotelking_admin");
+    return restClient.post()
+        .uri( "/approve")
         .contentType(APPLICATION_JSON)
         .body(body)
         .retrieve()

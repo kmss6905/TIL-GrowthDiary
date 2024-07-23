@@ -4,6 +4,8 @@ on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+    defaults:
+      working-directory: ./devops/github
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -13,4 +13,4 @@ Project
 
 Diary
 
-* [2024.09.11 - \[업무\] 이 일 얼마나 걸릴 것 같아요? ](https://github.com/kmss6905/TIL-GrowthDiary/blob/main/%EB%B9%85%ED%85%8C%ED%81%AC%20%EC%88%98%EC%84%9D%20%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80%20%EC%95%8C%EB%A0%A4%EC%A3%BC%EB%8A%94%20%EC%9D%BC(%EC%BD%94%EB%94%A9)%20%EC%9E%98%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95.md)
+* [2024.09.11 - \[업무\] 이 일 얼마나 걸릴 것 같아요? ](/docs/빅테크%20수석%20개발자가%20알려주는%20일(코딩)%20잘하는%20방법.md)

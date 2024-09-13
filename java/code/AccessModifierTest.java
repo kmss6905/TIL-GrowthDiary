@@ -1,6 +1,0 @@
-class AccessModifierTest{
-
-  public AccessModifierTest() {
-
-  }
-}

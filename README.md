@@ -15,3 +15,4 @@ Diary
 
 * [2024.09.11 - \[업무\] 이 일 얼마나 걸릴 것 같아요? ](/docs/빅테크%20수석%20개발자가%20알려주는%20일(코딩)%20잘하는%20방법.md)
 * [2024.09.16 - 의미가 같다면 다른 곳에서 같은 이름의 응답필드를 사용하자!](/docs/의미가%20완벽하게%20같다면%20응답%20필드%20이름도%20같게하자.md)
+* [2024.09.18 - JVM 메모리 할당 기술 Bump Pointer Allocation 과 TLAB](/docs/JVM%20Bump%20pointer%20allocation%20and%20Thread-Local%20Allocation%20Buffer.md)

@@ -61,6 +61,6 @@ Multi Thread 환경에서 같은 메모리 공간을 동시에 여러 스레드�
 
 ---
 ### Reference
-https://www.baeldung.com/java-jvm-tlab
+https://www.baeldung.com/java-jvm-tlab  
 https://inside.java/2020/06/25/compact-forwarding/  
 김한도, **『**JAVA PERFORMANCE FUNDAMENTAL**』**, 엑셈(2009), 108-109

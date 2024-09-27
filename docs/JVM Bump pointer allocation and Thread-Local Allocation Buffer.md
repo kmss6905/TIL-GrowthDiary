@@ -1,6 +1,6 @@
 # JVM 메모리 할당 효율성 높이기 - Bump pointer allocation 과Thread-Local Allocation Buffer
 
-> Java 에서 객체 생성시 JVM 의 Heap 영역에 메모리가 할당된다. 하지만 JVM 은 기본적으로 Multi-Thread 환경이기 때문에 메모리 할당시 메모리 충돌을 위해 Bump the pointer 과 Thread-Local-Buffer(TLAB) 라는 기술을 추가하였는 데 이에 대해서 간단히 정리해보았다.
+> Java 에서 객체 생성시 JVM 의 Heap 영역에 메모리가 할당된다. 하지만 JVM 은 기본적으로 Multi-Thread 환경이기 때문에 메모리 할당시 메모리 충돌을 방지하기 위해 Bump the pointer 과 Thread-Local-Buffer(TLAB) 라는 기술을 추가하였는 데 이에 대해서 간단히 정리해보았다.
 
 ### Bump the pointer
 
@@ -61,6 +61,6 @@ Multi Thread 환경에서 같은 메모리 공간을 동시에 여러 스레드�
 
 ---
 ### Reference
-https://www.baeldung.com/java-jvm-tlab
+https://www.baeldung.com/java-jvm-tlab  
 https://inside.java/2020/06/25/compact-forwarding/  
 김한도, **『**JAVA PERFORMANCE FUNDAMENTAL**』**, 엑셈(2009), 108-109

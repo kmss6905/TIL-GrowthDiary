@@ -17,7 +17,6 @@ public class OrderController {
   @GetMapping("/order")
   public ResponseEntity<UUID> createOrder() {
     final Order savedOrder = orderRepository.save(new Order(1000L, "호텔 주문"));
-    log.info("주문 생성");
     return ResponseEntity.ok(savedOrder.getOrderId());
   }
 }

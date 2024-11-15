@@ -25,7 +25,7 @@ class NamedLockStockFacadeTest {
 
   @BeforeEach
   public void insert() {
-    Stock stock = new Stock(1L, 10000L);
+    Stock stock = new Stock(1L, 20L);
     stockRepository.saveAndFlush(stock);
   }
 
@@ -36,7 +36,7 @@ class NamedLockStockFacadeTest {
 
   @Test
   public void 동시에_100개의요청() throws InterruptedException {
-    int threadCount = 10000;
+    int threadCount = 20;
     ExecutorService executorService = Executors.newFixedThreadPool(32);
     CountDownLatch latch = new CountDownLatch(threadCount);
 

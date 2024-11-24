@@ -439,8 +439,8 @@ Cloudfront 역시 API Gateway 와 마찬가지로 AWS 에서 제공하는 도메
 
 ---
 ### 참고
-https://obviy.us/blog/sharp-heic-on-aws-lambda/
-https://docs.aws.amazon.com/ko_kr/acm/latest/userguide/troubleshooting-DNS-validation.html
+* https://obviy.us/blog/sharp-heic-on-aws-lambda/
+* https://docs.aws.amazon.com/ko_kr/acm/latest/userguide/troubleshooting-DNS-validation.html
 
 
 

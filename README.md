@@ -18,4 +18,5 @@ Diary
 * [2024.09.18 - JVM 메모리 할당 기술 Bump Pointer Allocation 과 TLAB](/docs/JVM%20Bump%20pointer%20allocation%20and%20Thread-Local%20Allocation%20Buffer.md)
 * [2024.09.28 - 2024 DLCA Tech-Tree CON 컨퍼런스 방문 후기](/docs/2024%20DLCA%20Tech-Tree%20CON%20컨퍼런스%20후기.md)
 * [2024.10.24 - 게이밍 데스크탑으로 홈서버 운영하기](/docs/게이밍%20데스크탑으로%20홈서버%20운영하기.md)
+* [2024.11.10 - 다시금 깨닫는 영속성 컨텍스트와 DB 격리 레벨 중요성](/docs/다시%20깨닫는%20영속성%20컨텍스트의%20중요성.md)
 * [2024.11.15 - 모든 것을 의심하자.. 삽질이후의 깨달음(feat. 부하테스트 툴)](/docs/모든%20것을%20의심하자.%20삽질이후..%20(feat.%20부하테스트%20툴).md)

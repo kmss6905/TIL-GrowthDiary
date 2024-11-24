@@ -2,6 +2,7 @@
 
 Diary
 
+* [2023.12.16 - 에러를 통해 깨달은, 잘못 알고 있었던 직렬화와 역직렬화](/docs/잘못%20알고%20있었던%20직렬화와%20역직렬화.md)
 * [2024.01.07 - Java 의 `final`](/docs/Java%20의%20final%20은%20어디에%20사용할%20수%20있을까%3F.md)
 * [2024.02.21 - AWS Lambda 를 활용한 이미지 리사이징 및 업로드 적용기.md](/docs/Lamda%20를%20활용한%20이미지%20리사이징%20적용기.md)
 * [2024.05.11 - @RestControllerAdvice 에서 request body 로깅으로 남기기.md](/docs/%5BSpring%5D%20@RestControllerAdvice%20에서%20body%20로깅으로%20남기기.md)
